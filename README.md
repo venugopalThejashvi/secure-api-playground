@@ -1,2 +1,24 @@
 # secure-api-playground
-spring-boot and any concepts i come across
+## cURL's
+- [AUTH-API-cURL's](auth/README.md)
+- [NO-AUTH-API-cURL's](noauth/README.md)
+
+## Run Locally
+
+### Prerequisites
+- **Java 17** (JDK)
+- **Maven 3.8+**
+- **Git**
+
+### Steps
+* clone the repo
+* cd predict
+* mvn spring-boot:run
+
+### CONCEPTS
+* Springboot basic crud
+* jwt authentication
+* env
+* exception handler
+* health check with/without JWT
+
