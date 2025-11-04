@@ -2,7 +2,6 @@ package com.care.predict.auth.service;
 
 
 import com.care.predict.auth.request.LoginRequest;
-import com.care.predict.users.repo.UserRepo;
 import com.care.predict.users.request.UserRequest;
 import com.care.predict.users.service.UserService;
 import com.care.predict.utils.JwtUtil;
