@@ -7,7 +7,6 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.time.Duration;
 import java.time.Instant;
@@ -15,7 +14,6 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private final String SECRET_KEY = "O9VD9u/B4bUIQckwP6PcFtgSZkKskPDE8fYRaEnzBdE=";
 
     public String generateToken(UserDetails userDetails){
         return Jwts.builder()
@@ -34,6 +32,7 @@ public class JwtUtil {
 
 
     private Key getSighInKey() {
+        String SECRET_KEY = "O9VD9u/B4bUIQckwP6PcFtgSZkKskPDE8fYRaEnzBdE=";
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
