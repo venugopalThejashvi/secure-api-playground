@@ -1,5 +1,6 @@
 package com.care.predict.utils;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -32,7 +33,7 @@ public class JwtUtil {
 
 
     private Key getSighInKey() {
-        String SECRET_KEY = "O9VD9u/B4bUIQckwP6PcFtgSZkKskPDE8fYRaEnzBdE=";
+        String SECRET_KEY = Dotenv.load().get("SECRET_KEY");
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
