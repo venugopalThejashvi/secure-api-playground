@@ -24,42 +24,45 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
     }
 
+    /**DATABASE EXCEPTION*/
     @ExceptionHandler(CannotCreateTransactionException.class)
-    public ResponseEntity<HttpStatusCode> databaseException(CannotCreateTransactionException ex, HttpServletRequest request){
+    public ResponseEntity<HttpStatusCode> handleException(CannotCreateTransactionException ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
-    public ResponseEntity<HttpStatusCode> resourceNotException(NoResourceFoundException ex, HttpServletRequest request){
+    public ResponseEntity<HttpStatusCode> handleException(NoResourceFoundException ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<HttpStatusCode> genericException(Exception ex, HttpServletRequest request){
+    public ResponseEntity<HttpStatusCode> handleException(Exception ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<HttpStatusCode> responseStatusException(ResponseStatusException ex, HttpServletRequest request){
+    public ResponseEntity<HttpStatusCode> handleException(ResponseStatusException ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity<HttpStatusCode> responseStatusException(HttpMediaTypeNotSupportedException ex, HttpServletRequest request){
+    public ResponseEntity<HttpStatusCode> handleException(HttpMediaTypeNotSupportedException ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    /** INVALID CREDENTIALS */
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<HttpStatusCode> responseStatusException(BadCredentialsException ex, HttpServletRequest request){
+    public ResponseEntity<HttpStatusCode> handleException(BadCredentialsException ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
+    /** USED TO PRINT LOG's WHILE THERE IS A EXCEPTION */
     public static void printExceptionLog(Exception ex, String uri){
         log.error("{} : {} : {}", ex.getClass().getSimpleName(), ex, uri);
     }
