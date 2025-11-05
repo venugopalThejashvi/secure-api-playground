@@ -9,6 +9,7 @@
 - **Java 17** (JDK)
 - **Maven 3.8+**
 - **Git**
+- **Redis Server(Must be running locally)**
 
 ### Steps
 * clone the repo
@@ -16,6 +17,7 @@
 * mvn spring-boot:run
 
 ### CONCEPTS
+* Rate Limiting with redis
 * Springboot basic crud
 * jwt authentication
 * env
