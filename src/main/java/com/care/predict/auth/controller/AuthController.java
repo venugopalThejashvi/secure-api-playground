@@ -3,6 +3,7 @@ package com.care.predict.auth.controller;
 import com.care.predict.auth.request.LoginRequest;
 import com.care.predict.auth.service.AuthService;
 import com.care.predict.users.request.UserRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/auth/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserRequest request){
+    public ResponseEntity<String> registerUser(@Valid @RequestBody UserRequest request){
         return ResponseEntity.ok().body(authService.registerUser(request));
     }
 

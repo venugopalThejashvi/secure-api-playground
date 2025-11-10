@@ -1,5 +1,6 @@
 package com.care.predict.exception;
 
+import com.care.predict.exception.custom.UserAlreadyPresentException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
@@ -60,6 +62,20 @@ public class GlobalExceptionHandler {
     public ResponseEntity<HttpStatusCode> handleException(BadCredentialsException ex, HttpServletRequest request){
         printExceptionLog(ex,request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(UserAlreadyPresentException.class)
+    public ResponseEntity<HttpStatusCode> handleException(UserAlreadyPresentException ex, HttpServletRequest request){
+        printExceptionLog(ex,request.getRequestURI());
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<HttpStatusCode> handleException(MethodArgumentNotValidException ex, HttpServletRequest request){
+        printExceptionLog(ex,request.getRequestURI());
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     /** USED TO PRINT LOG's WHILE THERE IS A EXCEPTION */
